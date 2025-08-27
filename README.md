@@ -25,6 +25,7 @@ The "Gelao Digital Museum" is a cutting-edge, AI-powered interactive web applica
 - [Anaconda / Miniconda](https://docs.conda.io/) installed
 - Internet access to install Python packages
 - `requirements.txt` present in the project root
+- API requiring an OpenAI proxy
 
 ## Setup (Linux / macOS / Windows with Conda)
 1. Create a conda environment with Python 3.10 named `app`:

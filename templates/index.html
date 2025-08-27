@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仡佬族数字文化博物馆</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <header class="page-header">
+        <a href="/" class="logo-link">
+            <img src="/static/images/icon.png?v={{ cache_buster }}" alt="仡佬族数字文化博物馆 Logo">
+        </a>
+    </header>
+
+    <div id="top"></div>
+    <main class="hero-container">
+        <div class="hero-text">
+            <p class="subtitle">GELAO DIGITAL MUSEUM</p>
+            <h1>聆听远古的回响</h1>
+            <p>我们融合前沿AI与珍贵文化遗产，创造了一个有生命、可对话的数字博物馆。在这里，探索仡佬族跨越千年的智慧与传奇。</p>
+            <a href="#showcase-image" class="scroll-prompt">
+                开始探索 <span>↓</span>
+            </a>
+        </div>
+        
+        <div class="image-carousel-container">
+            <div class="image-carousel-wrapper" id="carousel-wrapper">
+                <img src="/static/images/intro1.jpg?v={{ cache_buster }}" alt="仡佬族文化展示1" class="carousel-image">
+                <img src="/static/images/intro2.jpg?v={{ cache_buster }}" alt="仡佬族文化展示2" class="carousel-image">
+                <img src="/static/images/intro3.jpg?v={{ cache_buster }}" alt="仡佬族文化展示3" class="carousel-image">
+                <img src="/static/images/intro4.jpg?v={{ cache_buster }}" alt="仡佬族文化展示4" class="carousel-image">
+                <img src="/static/images/intro5.jpg?v={{ cache_buster }}" alt="仡佬族文化展示5" class="carousel-image">
+            </div>
+            <button class="carousel-btn prev-btn" id="prev-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+            </button>
+            <button class="carousel-btn next-btn" id="next-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
+            </button>
+        </div>
+    </main>
+
+    <section id="showcase-image" class="showcase-image-container reveal-on-scroll">
+        <img src="/static/images/background.png?v={{ cache_buster }}" alt="仡佬族文化展示">
+    </section>
+    <section id="cta" class="cta-section reveal-on-scroll">
+        <div class="card-container">
+            <a href="/chat" class="card">
+                <div><h2>开始对话</h2><p>与AI守护者“仡言”进行实时交流，提出您感兴趣的任何问题，获得图文并茂的深度解答。</p></div>
+                <div class="card-link">进入对话界面 <span>→</span></div>
+            </a>
+            <a href="/features" class="card">
+                <div><h2>功能展示</h2><p>详细了解本馆如何运用AI技术，在智能问答、多媒体呈现等方面，为您带来沉浸式的文化体验。</p></div>
+                <div class="card-link">查看详细功能 <span>→</span></div>
+            </a>
+        </div>
+    </section>
+    <footer class="main-footer">
+        <p>© 2025 仡佬族数字文化博物馆. By “乌江踏傩黔绣寻珀”暑期社会实践团.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal-on-scroll').forEach(element => observer.observe(element));
+    </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {"particles":{"number":{"value":160,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.8,"random":true,"anim":{"enable":true,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":2,"random":true,"anim":{"enable":false,}},"line_linked":{"enable":false},"move":{"enable":true,"speed":0.5,"direction":"none","random":true,"straight":false,"out_mode":"out","bounce":false}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":false},"resize":true},"modes":{"repulse":{"distance":100,"duration":0.4}}},"retina_detect":true});
+    </script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapper = document.getElementById('carousel-wrapper');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            let images = Array.from(wrapper.querySelectorAll('.carousel-image'));
+            if (images.length <= 1) return;
+
+            const firstClone = images[0].cloneNode(true);
+            const lastClone = images[images.length - 1].cloneNode(true);
+            wrapper.appendChild(firstClone);
+            wrapper.insertBefore(lastClone, images[0]);
+            
+            let allImages = wrapper.querySelectorAll('.carousel-image');
+            let currentIndex = 1; 
+            let intervalId = null;
+            const PAUSE_DURATION = 5500;
+            const SCROLL_DURATION = 1200;
+
+            function updateCarouselPosition(withAnimation = true) {
+                if (withAnimation) {
+                    wrapper.style.transition = `transform ${SCROLL_DURATION}ms cubic-bezier(0.65, 0, 0.35, 1)`;
+                } else {
+                    wrapper.style.transition = 'none';
+                }
+                const offset = -currentIndex * 100;
+                wrapper.style.transform = `translateX(${offset}%)`;
+            }
+
+            function moveToNext() {
+                currentIndex++;
+                updateCarouselPosition();
+            }
+            
+            function moveToPrev() {
+                currentIndex--;
+                updateCarouselPosition();
+            }
+
+            wrapper.addEventListener('transitionend', () => {
+                if (currentIndex >= allImages.length - 1) {
+                    currentIndex = 1; 
+                    updateCarouselPosition(false);
+                }
+                if (currentIndex <= 0) { 
+                    currentIndex = allImages.length - 2;
+                    updateCarouselPosition(false);
+                }
+            });
+
+            function startAutoScroll() {
+                if (intervalId) clearInterval(intervalId);
+                intervalId = setInterval(moveToNext, PAUSE_DURATION);
+            }
+
+            nextBtn.addEventListener('click', () => {
+                moveToNext();
+                startAutoScroll();
+            });
+
+            prevBtn.addEventListener('click', () => {
+                moveToPrev();
+                startAutoScroll();
+            });
+
+            updateCarouselPosition(false);
+            startAutoScroll();
+        });
+    </script>
+</body>
+</html>

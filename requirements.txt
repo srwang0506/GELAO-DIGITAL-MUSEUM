@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+gradio
+python-multipart
+jinja2
+httpx
+openai
+sse-starlette

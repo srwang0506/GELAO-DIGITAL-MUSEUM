@@ -19,6 +19,8 @@ The "Gelao Digital Museum" is a cutting-edge, AI-powered interactive web applica
 
 ## Homepage
 <img width="3756" height="1917" alt="image" src="https://github.com/user-attachments/assets/25e7dc59-17e0-4449-abd2-ca5c516351cb" />
+<img width="2535" height="1274" alt="image" src="https://github.com/user-attachments/assets/3640784f-7470-4ee1-9fbf-1fdb5541b4d8" />
+
 
 
 ## Prerequisites
